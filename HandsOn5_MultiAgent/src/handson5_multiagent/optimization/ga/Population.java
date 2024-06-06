@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package handson4_evolutionaryagentsforsystemsimulation;
+package handson5_multiagent.optimization.ga;
 
 /**
  *
  * @author yadira
  */
+import handson5_multiagent.DataSet;
 import java.util.ArrayList;
 
 class Population {
@@ -26,8 +27,6 @@ class Population {
         while (initialPopulation.size() < size) {
             double b0 = 1 + Math.random() * (200 - 1);
             double b1 = Math.random() * 50;
-            //double b0 = 160 + Math.random() * 15; // Rango [160, 175]
-            //double b1 = 18 + Math.random() * 10;  // Rango [18, 28]
             Chromosome chromosome = new Chromosome(b0, b1, dataSet);
             chromosome.calculateFitness(dataSet.getX(), dataSet.getY());
             if (chromosome.getFitness() >= 0.95 && b0 >= 167 && b1 >= 23) {

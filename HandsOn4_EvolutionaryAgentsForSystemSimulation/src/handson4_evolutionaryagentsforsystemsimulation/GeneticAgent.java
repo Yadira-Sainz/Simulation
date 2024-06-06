@@ -9,13 +9,13 @@ package handson4_evolutionaryagentsforsystemsimulation;
  * @author yadira
  */
 import jade.core.Agent;
-import jade.core.behaviours.TickerBehaviour;
+import jade.core.behaviours.OneShotBehaviour;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GeneticAgent extends Agent {
 
-    private static final double CROSSOVER_RATE = 0.7;
+    private static final double CROSSOVER_RATE = 0.95;
     private static final double MUTATION_RATE = 0.05;
     private static final double TARGET_RSQUARED = 0.9;
 
@@ -26,8 +26,8 @@ public class GeneticAgent extends Agent {
 
         population = new Population(100, dataSet);
 
-        addBehaviour(new TickerBehaviour(this, 1000) {
-            protected void onTick() {
+        addBehaviour(new OneShotBehaviour(this) {
+            public void action() {
                 population.evaluatePopulation();
 
                 if (population.isSolutionFound(TARGET_RSQUARED)) {
